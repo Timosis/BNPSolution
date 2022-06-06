@@ -1,0 +1,24 @@
+﻿
+<h2>File @ViewBag.FileName History</h2>
+
+<ejs-grid id="historyGrid" dataSource="@ViewBag.History">
+    <e-grid-editSettings template='#dialogtemplate'></e-grid-editSettings>
+    <e-grid-columns>
+        <e-grid-column field="Type" headerText="Type" template="#typeTemplate"></e-grid-column>
+        <e-grid-column field="Date" headerText="Date" format="dd/MM/yyyy"></e-grid-column> 
+    </e-grid-columns>
+</ejs-grid>
+
+<script id="typeTemplate" type="text/x-template">
+        <div>
+            ${if(Type === 1)}
+            <span>Upload</span>
+            ${else if(Type === 2)}
+            <span>Download</span>
+            ${else if(Type === 3)}
+            <span>Create</span>
+             ${else if(Type === 4)}
+             <span>Delete</span>
+            ${/if}
+        </div>
+    </script>

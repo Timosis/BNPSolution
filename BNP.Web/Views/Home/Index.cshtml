@@ -1,0 +1,26 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@if (Enumerable.Count(ViewBag.FileStatics) > 0)
+{
+
+    <ejs-chart id="container" width="100%" title="File Statics">
+        <e-chart-tooltipsettings enable="true">
+                </e-chart-tooltipsettings>
+        <e-chart-primaryxaxis valueType="Category"></e-chart-primaryxaxis>
+        <e-chart-primaryyaxis interval="1"></e-chart-primaryyaxis>
+        <e-series-collection>
+            <e-series dataSource="ViewBag.FileStatics" columnSpacing="0.5" columnWidth="0.5" xName="Category" yName="Count" type="@Syncfusion.EJ2.Charts.ChartSeriesType.Column"
+             fill="skyblue">
+            </e-series>
+        </e-series-collection>
+    </ejs-chart>
+}
+else
+{
+<div class="alert alert-danger" role="alert">
+  There is no statics data
+</div>
+}
+

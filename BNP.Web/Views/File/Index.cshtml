@@ -1,0 +1,42 @@
+﻿@{
+    string[] files = new string[] { "History", "Open", "|", "Delete", "Download", "Rename", "|", "Details" };
+    string[] folder = new string[] { "History", "Open", "|", "Delete", "Download", "Rename", "|", "Details" };
+    string[] layout = new string[] { "History", "SortBy", "View", "Refresh", "|", "NewFolder", "Upload", "|", "Details", "|", "SelectAll" };
+}
+
+<h2>File Operations</h2>
+<ul>
+    @foreach (var claim in User.Claims)
+    {
+        <li><strong>@claim.Type</strong>: @claim.Value</li>
+    }
+</ul>
+
+<div class="sample-container" style="padding:10px">
+    <!--  Filemanager element declaration -->
+    <ejs-filemanager id="file" created="created" view="Details" menuClick="menuClick" allowMultiSelection="false">
+        <e-filemanager-ajaxsettings url="/File/FileOperations" downloadUrl="/File/Download" uploadUrl="/File/Upload" getImageUrl="/File/GetImage">
+        </e-filemanager-ajaxsettings>
+        <e-filemanager-contextmenusettings visible="true" file="files" folder="folder" layout="layout"></e-filemanager-contextmenusettings>
+        <e-filemanager-navigationpanesettings visible="true"></e-filemanager-navigationpanesettings>
+        <e-filemanager-toolbarsettings visible="true"></e-filemanager-toolbarsettings>
+    </ejs-filemanager>
+</div>
+
+<script>
+    function created() {
+        var filemanager = document.getElementById("file").ej2_instances[0];
+        filemanager.uploadObj.dropArea = null;
+     }
+
+     function menuClick(args) {
+        if (args.item.text === 'History') {
+            window.location.href = '/Home/FileHistory?filename=' + args.fileDetails[0].name ;
+         }
+     }
+</script>
+<style>
+    .e-empty-inner-content {
+        display: none;
+    }
+</style>
