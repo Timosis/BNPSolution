@@ -55,24 +55,19 @@ namespace BNP.Web.Controllers
         }
 
         [HttpGet]
-        public IActionResult Login(string returnUrl = null)
+        public IActionResult Login()
         {
-            ViewData["ReturnUrl"] = returnUrl;
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Login(UserLoginVM userModel, string returnUrl = null)
+        public async Task<IActionResult> Login(UserLoginVM userModel)
         {
-            if (!ModelState.IsValid)
-            {
-                return View(userModel);
-            }
             var result = await _signInManager.PasswordSignInAsync(userModel.Email, userModel.Password, userModel.RememberMe, false);
             if (result.Succeeded)
             {
-                return RedirectToLocal(returnUrl);
+                return RedirectToAction("Index", "File");
             }
             else
             {
@@ -88,14 +83,6 @@ namespace BNP.Web.Controllers
             await _signInManager.SignOutAsync();
 
             return RedirectToAction(nameof(HomeController.Index), "Home");
-        }
-
-        private IActionResult RedirectToLocal(string returnUrl)
-        {
-            if (Url.IsLocalUrl(returnUrl))
-                return Redirect(returnUrl);
-            else
-                return RedirectToAction(nameof(HomeController.Index), "Home");
         }
     }
 }

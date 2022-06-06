@@ -3,6 +3,7 @@ using BNP.DataAccess;
 using BNP.Domain.Entities;
 using BNP.Domain.Interfaces;
 using BNP.Web.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using System.Linq;

@@ -9,7 +9,6 @@ using BNP.Domain.Entities;
 
 namespace BNP.Web.Controllers
 {
-    [Authorize]
     public class FileController : Controller
     {
 
@@ -115,7 +114,6 @@ namespace BNP.Web.Controllers
             _unitOfWork.FileHistoryRepository.Add(history);
             _unitOfWork.Complete();
         }
-
 
         public IActionResult GetImage(FileManagerDirectoryContent args)
         {
