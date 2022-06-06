@@ -35,6 +35,7 @@ if (Directory.Exists(Path.Combine(Directory.GetCurrentDirectory(), @"node_module
     }
 }
 
+Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("Mgo+DSMBMAY9C3t2VVhhQlFaclhJXGFWfVJpTGpQdk5xdV9DaVZUTWY/P1ZhSXxRdkNjX39bcXVUQWhfWEM=");
 
 builder.Services.AddAutoMapper(typeof(Program));
 
